@@ -12279,7 +12279,7 @@ xc[33744].instantPhase = nil
 xc[33744].primerUid = nil
 xc[33744].targetUid = nil
 xc[33744].hitTimer = nil
-xc[33744].guardHitBoostInstalled = false xc[33744].stats = {status = xc[33744].resetBlocked and "Reset wall closed" or "Ready",available = 0,matching = 0,lastTarget = "None",lastResult = "Idle",}xc[33744].config = {stealMode = "Tween",speed = nG[31041],antiTrap = true,heaviestFirst = false,highestValueFirst = false,minWeightKg = 0,espEnabled = false,espRarity = true,espName = true,espKg = true,espMutation = true,espValue = true,espPlaced = false,minValuePerSec = 0,rarityEnabled = false,rarities = {},nameEnabled = false,names = {},areaEnabled = false,areas = {},mutationEnabled = false,mutations = {},}xc[33744].gameAntiAfkDisabled = nG[32113]()
+xc[33744].guardHitBoostInstalled = false xc[33744].stats = {status = xc[33744].resetBlocked and "Reset wall closed" or "Ready",available = 0,matching = 0,lastTarget = "None",lastResult = "Idle",}xc[33744].config = {stealMode = "Instant",speed = nG[31041],antiTrap = true,heaviestFirst = false,highestValueFirst = false,minWeightKg = 0,espEnabled = false,espRarity = true,espName = true,espKg = true,espMutation = true,espValue = true,espPlaced = false,minValuePerSec = 0,rarityEnabled = false,rarities = {},nameEnabled = false,names = {},areaEnabled = false,areas = {},mutationEnabled = false,mutations = {},}xc[33744].gameAntiAfkDisabled = nG[32113]()
 if nG[30695].Character then
     nG[31975](nG[30695].Character)
 xc[33766] = nG[30695].Character:FindFirstChildOfClass"Humanoid"
@@ -12830,11 +12830,11 @@ ui._reconcileRunningState(ui)
 end)({})
 end
 sL.getStealMode = function (ui)
-return ui.config.stealMode or "Tween"
+return "Instant"
 end
 sL.setStealMode = function (ui,uZ)
 return (function (bw)
-bw[34744] = uZ == "Instant" and "Instant" or "Tween"
+bw[34744] = "Instant"
 if ui.config.stealMode ~= bw[34744] then
     ui.config.stealMode = bw[34744]
     if ui.enabled then
@@ -16971,9 +16971,6 @@ fL[45239] = nil -- [removed] Egg Runtime UI panel
 fL[45258] = mD.Collapsible(mD,"Auto Steal",{DefaultOpen = false})
 fL[45282] = nil
 fL[45295] = nil
-fL[45258].Dropdown(fL[45258],{Text = "Steal Mode",Options = {"Tween","Instant"},Default = fL[45198].getStealMode(fL[45198]) or "Tween",Flag = "SAE_StealModeV2",Callback = function (aM)
-fL[45198].setStealMode(fL[45198],aM)
-end,})
 fL[45295] = fL[45258]:Input({Text = "Speed", Description = "Rollback / Slow ? Tune up", Default = tostring(fL[45227]), Numeric = true, ClearTextOnFocus = false, Flag = "SAE_TweenSpeedV3", Callback = function (aM)
 return (function (mi)
 mi[45513] = fL[45198].setSpeed(fL[45198],aM)
@@ -19879,7 +19876,7 @@ uQ[53495] = require(uQ[53334].Shared.Types.AreaEggs)
 uQ[53512] = require(uQ[53334].Shared.Util.TreadmillUtil)
 uQ[53532] = require(uQ[53334].Data.Treadmills)
 uQ[53556] = uQ[53286].LocalPlayer
-uQ[53569] = "Vincitore Community"
+uQ[53569] = "Vincitore"
 uQ[53597] = "rbxassetid://90051950241069"
 uQ[53614] = 32768
 uQ[53632] = 0.75 uQ[53659] = 90
@@ -19926,7 +19923,7 @@ end
 uQ[53883] = function (vu)
 return (function (cZ)
 cZ[54425] = vu.find(vu,"?",1,true) and "&" or "?"
-return vu .. cZ[54425] .. "\nwith_components=true&wait=true"
+return vu .. cZ[54425] .. "with_components=true&wait=true"
 end)({})
 end
 uQ[53908] = function (oe)
@@ -20624,8 +20621,6 @@ end)({})
 end
 wt._buildDisconnectPayload = function (ui)
 return (function (gW)
-gW[56335] = ui._assetThumbnail(ui,uQ[53597])
-assert(gW[56335],"Vincitore sender artwork is unavailable")
 gW[56353] = ui._avatarThumbnail(ui)
 gW[56369] = {uQ[54230]("@everyone"),uQ[54354](),}gW[56389] = "# Vincitore Community\n**" .. uQ[53556].Name .. "** \xc2\xb7 Steal An Egg"
 if gW[56353] then
@@ -20636,7 +20631,7 @@ gW[56369][#gW[56369] + 1] = uQ[54354]()
 gW[56369][#gW[56369] + 1] = uQ[54230]"## Roblox Connection Lost\nYour Roblox session was disconnected.\nWaiting for your connection to recover."
 gW[56369][#gW[56369] + 1] = uQ[54354]()
 gW[56369][#gW[56369] + 1] = uQ[54230]("-# Vincitore Community \xc2\xb7 Steal An Egg \xc2\xb7 <t:" .. tostring(DateTime.now().UnixTimestamp) .. ":F>")
-return {username = uQ[53569],avatar_url = gW[56335],flags = uQ[53614],allowed_mentions = {parse = {"everyone"}},components = {{type = 17,spoiler = false,components = gW[56369],},},}
+return {username = uQ[53569],flags = uQ[53614],allowed_mentions = {parse = {"everyone"}},components = {{type = 17,spoiler = false,components = gW[56369],},},}
 end)({})
 end
 wt._buildSpawnPayload = function (ui,qR)
@@ -20644,14 +20639,12 @@ return (function (ar)
 ar[56398] = uQ[53399].Get()
 assert(type(ar[56398]) == "table","Save profile is unavailable")
 ar[56409] = ui._eventHero(ui,qR.event,ar[56398])
-ar[56436] = ui._assetThumbnail(ui,uQ[53597])
-assert(ar[56436],"Vincitore sender artwork is unavailable")
 ar[56454] = ui._assetThumbnail(ui,ar[56409].icon)
 assert(ar[56454],"Egg artwork is unavailable")
 ar[56476] = #ar[56409].mutations > 0 and ("\nMutation \xc2\xb7 **" .. table.concat(ar[56409].mutations,", ") .. "**") or ""
 ar[56499] = string.format("## Egg Spawned\n### %s\n**%s** \xc2\xb7 **%s Kg** \xc2\xb7 **$%s/s**\nArea \xc2\xb7 **%s**%s",ar[56409].name,ar[56409].rarity,uQ[54026](ar[56409].weight),uQ[54004](ar[56409].rate),ar[56409].areaId,ar[56476])
 ar[56528] = {uQ[54230]("@everyone"),uQ[54354](),uQ[54337](ar[56499],ar[56454],ar[56409].name),uQ[54354](),uQ[54230]("-# Vincitore Community \xc2\xb7 Steal An Egg \xc2\xb7 <t:" .. tostring(DateTime.now().UnixTimestamp) .. ":F>"),}
-return {username = uQ[53569],avatar_url = ar[56436],flags = uQ[53614],allowed_mentions = {parse = {"everyone"}},components = {{type = 17,spoiler = false,components = ar[56528],},},}
+return {username = uQ[53569],flags = uQ[53614],allowed_mentions = {parse = {"everyone"}},components = {{type = 17,spoiler = false,components = ar[56528],},},}
 end)({})
 end
 wt._buildPayload = function (ui,qR)
@@ -20664,8 +20657,6 @@ if qR.kind == "spawn" then
 end
 bx[56541] = ui._collectSnapshot(ui,qR.event)
 bx[56555] = bx[56541].hero
-bx[56577] = ui._assetThumbnail(ui,uQ[53597])
-assert(bx[56577],"Vincitore sender artwork is unavailable")
 bx[56588] = ui._assetThumbnail(ui,bx[56555].icon)
 assert(bx[56588],"Egg artwork is unavailable")
 bx[56597] = ui._avatarThumbnail(ui)
@@ -20721,7 +20712,7 @@ bx[56725][#bx[56725] + 1] = uQ[54230](string.format("### Backpack Alert\nEggs in
 end
 bx[56725][#bx[56725] + 1] = uQ[54354]()
 bx[56725][#bx[56725] + 1] = uQ[54230]("-# Vincitore Community \xc2\xb7 Steal An Egg \xc2\xb7 <t:" .. tostring(DateTime.now().UnixTimestamp) .. ":F>")
-return {username = uQ[53569],avatar_url = bx[56577],flags = uQ[53614],allowed_mentions = {parse = bx[56705] and {"everyone"} or {}},components = {{type = 17,spoiler = false,components = bx[56725],},},}
+return {username = uQ[53569],flags = uQ[53614],allowed_mentions = {parse = bx[56705] and {"everyone"} or {}},components = {{type = 17,spoiler = false,components = bx[56725],},},}
 end)({})
 end
 wt._submit = function (ui,vu,kf)
