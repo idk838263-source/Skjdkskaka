@@ -21550,7 +21550,7 @@ sf[1244].visual = sf[1218].Tab(sf[1218],{Text = "Visual"})
 sf[1244].webhook = sf[1218].Tab(sf[1218],{Text = "Webhook"})
 -- [removed] premium/monitoring tab
 sf[1244].settings = sf[1218].Tab(sf[1218],{Text = "Utility"})
-sf[1244].config = sf[1218].ConfigTab(sf[1218],{Text = "Config",Folder = "Vincitore/Configs/StealAnEgg",DefaultProfile = "Default",AutoLoad = true,LoadCallbacks = true,TeleportPersistence = {PreferencePath = "Vincitore/teleport_persistence.json",LoaderUrl = "https://raw.githubusercontent.com/tutorkah104-rgb/Steal-an-Egg/refs/heads/main/Vincitore.luau",},})
+sf[1244].config = sf[1218].ConfigTab(sf[1218],{Text = "Config",Folder = "Vincitore/Configs/StealAnEgg",DefaultProfile = "Default",AutoLoad = true,LoadCallbacks = true,TeleportPersistence = {PreferencePath = "Vincitore/teleport_persistence.json",LoaderUrl = "https://raw.githubusercontent.com/idk953072-crypto/Steal-an-Egg/refs/heads/main/vincitore",},})
 sf[1260] = sf[646].mount(sf[1244].event,{EggPanel = sf[960],RiftRuntime = sf[1120],BossFightRuntime = sf[1139],Notify = function (fE)
 sf[1218].Notify(sf[1218],fE)
 end,})
